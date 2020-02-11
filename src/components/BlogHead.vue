@@ -1,0 +1,54 @@
+<template>
+    <div class="BlogHead">
+        <Menu mode="horizontal" :theme="theme1" active-name="1">
+            <MenuItem name="1">
+                <h2>天博个人博客</h2>
+            </MenuItem>
+            <MenuItem name="2">
+                <router-link to="/" style="color: gainsboro"><Icon type="ios-people" @click="Back" />首页</router-link>
+            </MenuItem>
+            <Submenu name="3">
+                <template slot="title">
+                    <Icon type="ios-stats" />
+                    技术分享
+                </template>
+                <MenuItem name="3-1">Java</MenuItem>
+                <MenuItem name="3-2">Jquery</MenuItem>
+                <MenuItem name="3-3">C++</MenuItem>
+                <MenuItem name="3-4">C#</MenuItem>
+            </Submenu>
+            <MenuItem name="4">
+                <Input search placeholder="文章搜索" icon="md-search" @on-click="found"/>
+            </MenuItem>
+            <MenuItem name="5" style="float: right">
+                <Icon type="ios-contact" />注册
+            </MenuItem>
+            <MenuItem name="5" style="float: right">
+                <Icon type="ios-contact"/>登录
+            </MenuItem>
+        </Menu>
+        <br>
+        <RadioGroup v-model="theme1"></RadioGroup>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "BlogHead",
+        data () {
+            return {
+                theme1: 'dark'
+            }
+        },
+        methods:{
+            found:function () {
+                alert("搜索框可以使用");
+            }
+        }
+    }
+
+</script>
+
+<style scoped>
+
+</style>
