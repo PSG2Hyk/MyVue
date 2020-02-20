@@ -5,7 +5,7 @@
                 <h2>天博个人博客</h2>
             </MenuItem>
             <MenuItem name="2">
-                <router-link to="/" style="color: gainsboro"><Icon type="ios-people" @click="Back" />首页</router-link>
+                <router-link to="/" style="color: gainsboro"><Icon type="ios-people"/>首页</router-link>
             </MenuItem>
             <Submenu name="3">
                 <template slot="title">
@@ -18,7 +18,7 @@
                 <MenuItem name="3-4">C#</MenuItem>
             </Submenu>
             <MenuItem name="4">
-                <Input search placeholder="文章搜索" icon="md-search" @on-click="found"/>
+                <Input :search="true" placeholder="文章搜索" v-model="foundText" icon="md-search" @on-click="found" @on-enter="found"/>
             </MenuItem>
             <MenuItem name="5" style="float: right">
                 <Icon type="ios-contact" />注册
@@ -33,16 +33,23 @@
 </template>
 
 <script>
+    import axios from '../plugin/axios'
     export default {
         name: "BlogHead",
         data () {
             return {
-                theme1: 'dark'
+                theme1: 'dark',
+                foundText:""
             }
         },
         methods:{
             found:function () {
-                alert("搜索框可以使用");
+                if (this.foundText==""){
+                    this.$router.push('/');
+                }else{
+                    // this.$store.commit("FoundList",this.foundText);
+                    this.$router.push({name:'BlogList',params:{foundText:this.foundText}});
+                }
             }
         }
     }

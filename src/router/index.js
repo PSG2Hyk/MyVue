@@ -17,6 +17,16 @@ const routes = [
     name: 'BlogText',
     component: () => import( '../components/BlogText.vue'),
     props:true,
+  },
+  {
+    path:'/BlogList/:foundText',
+    name:'BlogList',
+    component: () => import( '../components/BlogList.vue'),
+    props:true,
+  },
+  {
+    path:'*',
+    redirect:'/'
   }
 ]
 

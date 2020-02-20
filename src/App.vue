@@ -1,8 +1,12 @@
 <template>
   <div id="app">
-    <blog-head></blog-head>
-    <router-view></router-view>
-    <blog-foot></blog-foot>
+    <div class="layout">
+      <Layout>
+        <Header><blog-head></blog-head></Header>
+        <Content><router-view></router-view></Content>
+        <Footer><blog-foot></blog-foot></Footer>
+      </Layout>
+    </div>
   </div>
 </template>
 <script>
@@ -13,7 +17,8 @@
     components: {
       BlogHead,
       BlogList,
-      BlogFoot},
+      BlogFoot,
+    }
   }
 </script>
 <style>

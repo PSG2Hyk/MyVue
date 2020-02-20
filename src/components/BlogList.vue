@@ -30,7 +30,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    import axios from '../plugin/axios'
     export default {
         name: "BlogList",
         data(){
@@ -39,11 +39,30 @@
                 showList:[],
                 currentPage:1,
                 size:5,
-                dataCount:0
+                dataCount:0,
+                // foundText:''
             }
         },
         created: function () {
-            axios.get("http://localhost:8081/Blog/List")
+            // if (this.$store.state.foundList == ""){
+            // }else {
+            //     var foundList=this.$store.state.foundList;
+            var foundText=this.$route.params.foundText;
+            // alert(foundText);
+            if (foundText == null){
+                axios.get("http://localhost:8081/Blog/List")
+                    .then((data)=>{this.blogs=data.data.data,
+                            this.dataCount=this.blogs.length
+                            if (this.dataCount <this.size){
+                                this.showList=this.blogs;
+                            }else {
+                                this.showList=this.blogs.slice(0,this.size)
+                            }
+                        }
+                    )
+                // this.$store.commit("FoundList","");
+            }else {
+                axios.get("http://localhost:8081/Blog/findBy",{params:{blogContent:foundText}})
                     .then((data)=>{this.blogs=data.data.data,
                         this.dataCount=this.blogs.length
                         if (this.dataCount <this.size){
@@ -51,8 +70,9 @@
                         }else {
                             this.showList=this.blogs.slice(0,this.size)
                         }
-                    }
-                    )
+                    })
+            }
+            // }
         },
        methods:{
             BlogTextLink(Bid){
@@ -66,6 +86,36 @@
        },
         computed:{
 
+        },
+        watch:{
+            '$route'(to,from){
+                // alert("watch执行了")
+                var foundText=this.$route.params.foundText;
+                // alert(foundText);
+                if (foundText == null){
+                    axios.get("http://localhost:8081/Blog/List")
+                        .then((data)=>{this.blogs=data.data.data;
+                                this.dataCount=this.blogs.length;
+                                if (this.dataCount <this.size){
+                                    this.showList=this.blogs;
+                                }else {
+                                    this.showList=this.blogs.slice(0,this.size)
+                                }
+                            }
+                        )
+                    this.$store.commit("FoundList","");
+                }else {
+                    axios.get("http://localhost:8081/Blog/findBy",{params:{blogContent:foundText}})
+                        .then((data)=>{this.blogs=data.data.data,
+                            this.dataCount=this.blogs.length
+                            if (this.dataCount <this.size){
+                                this.showList=this.blogs;
+                            }else {
+                                this.showList=this.blogs.slice(0,this.size)
+                            }
+                        })
+                }
+            }
         }
     }
 </script>
