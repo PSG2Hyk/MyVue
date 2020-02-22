@@ -2,7 +2,7 @@
     <div class="BlogHead">
         <Menu mode="horizontal" :theme="theme1" active-name="1">
             <MenuItem name="1">
-                <h2>天博个人博客</h2>
+                <h2 style="color: aliceblue">天博个人博客</h2>
             </MenuItem>
             <MenuItem name="2">
                 <router-link to="/" style="color: gainsboro"><Icon type="ios-people"/>首页</router-link>
@@ -12,10 +12,10 @@
                     <Icon type="ios-stats" />
                     技术分享
                 </template>
-                <MenuItem name="3-1">Java</MenuItem>
-                <MenuItem name="3-2">Jquery</MenuItem>
-                <MenuItem name="3-3">C++</MenuItem>
-                <MenuItem name="3-4">C#</MenuItem>
+                <MenuItem name="3-1" to="/BlogList/Type/Java">Java</MenuItem>
+                <MenuItem name="3-2" to="/BlogList/Type/Jquery">Jquery</MenuItem>
+                <MenuItem name="3-3" to="/BlogList/Type/C++">C++</MenuItem>
+                <MenuItem name="3-4" to="/BlogList/Type/Vue">Vue</MenuItem>
             </Submenu>
             <MenuItem name="4">
                 <Input :search="true" placeholder="文章搜索" v-model="foundText" icon="md-search" @on-click="found" @on-enter="found"/>

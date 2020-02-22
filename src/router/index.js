@@ -25,6 +25,12 @@ const routes = [
     props:true,
   },
   {
+    path:'/BlogList/Type/:foundType',
+    name:'BlogType',
+    component: () => import( '../components/BlogType.vue'),
+    props:true,
+  },
+  {
     path:'*',
     redirect:'/'
   }
