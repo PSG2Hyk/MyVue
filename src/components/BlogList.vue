@@ -16,7 +16,7 @@
                         <!--<Icon type="ios-thumbs-up-outline" /> 234-->
                     <!--</li>-->
                     <li>
-                        <Icon type="ios-chatbubbles-outline" style="margin-left: 10px" /> 345
+                        <Icon type="ios-chatbubbles-outline" style="margin-left: 10px" /> {{blog.commentCount}}
                     </li>
                 </div>
                 <p style="text-align:right">{{blog.createTime}}</p>
@@ -47,8 +47,8 @@
             var foundType=this.$route.params.foundType;
             if (foundText == null){
                 axios.get("http://localhost:8081/Blog/List")
-                    .then((data)=>{this.blogs=data.data.data,
-                            this.dataCount=this.blogs.length
+                    .then((data)=>{this.blogs=data.data.data;
+                            this.dataCount=this.blogs.length;
                             if (this.dataCount <this.size){
                                 this.showList=this.blogs;
                             }else {
@@ -58,8 +58,8 @@
                     )
             }else {
                 axios.get("http://localhost:8081/Blog/findBy",{params:{blogContent:foundText}})
-                    .then((data)=>{this.blogs=data.data.data,
-                        this.dataCount=this.blogs.length
+                    .then((data)=>{this.blogs=data.data.data;
+                        this.dataCount=this.blogs.length;
                         if (this.dataCount <this.size){
                             this.showList=this.blogs;
                         }else {

@@ -8,6 +8,7 @@
                         <ListItem style="text-align: left;text-indent: 2em">{{blogs.blogContent}}</ListItem>
                     </List>
                 </p>
+                <img src="http://p2.music.126.net/daZcHVIJicL3wXJWMIjAng==/7926379325753633.jpg?param=130y130">
             </Card>
             <Modal v-model="modal" :loading="modalLoading" :maskClosable="false" ref="model" @on-ok="ok">
                 <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80" style="width: 60%; margin: 0 auto; ">

@@ -2,7 +2,7 @@
   <div id="app">
     <div class="layout">
       <Layout>
-        <Header><blog-head></blog-head></Header>
+        <Header style="height: 77px"><blog-head></blog-head></Header>
         <Content><router-view></router-view></Content>
         <Footer><blog-foot></blog-foot></Footer>
       </Layout>
