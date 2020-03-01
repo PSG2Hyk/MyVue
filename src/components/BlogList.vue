@@ -12,9 +12,6 @@
                     <li>
                         <Icon type="ios-star-outline" />{{blog.blogType}}
                     </li>
-                    <!--<li>-->
-                        <!--<Icon type="ios-thumbs-up-outline" /> 234-->
-                    <!--</li>-->
                     <li>
                         <Icon type="ios-chatbubbles-outline" style="margin-left: 10px" /> {{blog.commentCount}}
                     </li>
@@ -94,9 +91,7 @@
         },
         watch:{
             '$route'(to,from){
-                // alert("watch执行了")
                 var foundText=this.$route.params.foundText;
-
                 if (foundText == null){
                     axios.get("http://localhost:8081/Blog/List")
                         .then((data)=>{this.blogs=data.data.data;
@@ -122,12 +117,10 @@
                 }
                 var foundType=this.$route.params.foundType;
                 if (foundType != null) {
-                    alert("----Type---Type---");
                     axios.get("http://localhost:8081/Blog/findByType",{params:{blogType:foundType}})
                         .then((data)=>{this.blogs=data.data.data;
                             this.dataCount=this.blogs.length;
                             if (this.dataCount <this.size){
-                                alert(this.dataCount);
                                 this.showList="";
                                 this.showList=this.blogs;
                             }else {

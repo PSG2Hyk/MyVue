@@ -53,7 +53,7 @@
         <div class="Comment" style="background: gainsboro;border: 2px solid cadetblue; width: 60%; margin:0 auto 3px"v-for="comment in comments" >
             <List style="margin: 0px 5px">
                 <ListItem>
-                    <ListItemMeta style="text-align: left;" avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar" :title="comment.userName" :description="comment.commentText" />
+                    <ListItemMeta style="text-align: left;" avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar" :title="comment.userName":description="comment.commentText"/>
                     <Button style="text-align: right; margin-top: 20px" @click="open(comment.commentId)">回复</Button>
                     <Button style="text-align: right; margin-top: 20px" @click="click(comment.commentId)">查看回复</Button>
                 </ListItem>
@@ -85,7 +85,7 @@
                     ],
                     desc: [
                         { required: true, message: '请输入内容', trigger: 'blur' },
-                        { type: 'string', min: 5, message: '输入的评论不能少于5个字', trigger: 'blur' }
+                        { type: 'string', min: 5,max:255, message: '输入的评论不能少于5个字或多于255个字', trigger: 'blur' }
                     ]
                 },
                 id:'',

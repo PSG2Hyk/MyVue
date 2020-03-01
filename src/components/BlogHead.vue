@@ -74,7 +74,6 @@
                 if (this.foundText == "") {
                     this.$router.push('/');
                 } else {
-                    // this.$store.commit("FoundList",this.foundText);
                     this.$router.push({name: 'BlogList', params: {foundText: this.foundText}});
                 }
             }
