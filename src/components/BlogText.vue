@@ -8,7 +8,7 @@
                         <ListItem style="text-align: left;text-indent: 2em">{{blogs.blogContent}}</ListItem>
                     </List>
                 </p>
-                <img src="http://p2.music.126.net/daZcHVIJicL3wXJWMIjAng==/7926379325753633.jpg?param=130y130">
+                <!--<img src="http://p2.music.126.net/daZcHVIJicL3wXJWMIjAng==/7926379325753633.jpg?param=130y130">-->
             </Card>
             <Modal v-model="modal" :loading="modalLoading" :maskClosable="false" ref="model" @on-ok="ok">
                 <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80" style="width: 60%; margin: 0 auto; ">
@@ -103,7 +103,11 @@
                         this.$Message.success('成功!');
                         this.$store.commit("UserSave",{name:this.formValidate.name,mail:this.formValidate.mail});
                         this.id=this.$route.params.id;
-                        axios.post("http://localhost:8081/Comment/Save",{blogId:this.id,userName:this.$store.state.name,userMail:this.$store.state.mail,commentText:this.formValidate.desc,parentId:this.parentId})
+                        axios.post("http://localhost:8081/Comment/Save",{blogId:this.id,
+                            userName:this.$store.state.name,
+                            userMail:this.$store.state.mail,
+                            commentText:this.formValidate.desc,
+                            parentId:this.parentId})
                             .then(()=>{
                                 axios.get("http://localhost:8081/Comment/List",{params:{id:this.id}})
                                     .then((data)=>{this.comments=data.data.data})
